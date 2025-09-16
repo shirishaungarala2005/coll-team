@@ -1,14 +1,45 @@
+<!DOCTYPE html>
 <html>
-  <head>
-    <title>
-      first project
-    </title>
-    <body>
-      .h1{style color:pink;background-color:darkgreen;text-align:center;}
-      .p{style color:yellow;background-color:red;}
-      <h1>Inline</h1>
-      <p>The idea is about the inline css</p>
-      <p style color:darkred;background-color:blue>this paragraph is applied by inline</p>
-    </body>
-  </head>
+<head>
+  <title>Age Calculator</title>
+</head>
+<body>
+
+  <h2>Age Calculator</h2>
+
+  <!-- Input for Date of Birth -->
+  <label>Enter your Date of Birth: </label>
+  <input type="date" id="dob"><br><br>
+
+  <!-- Button to calculate -->
+  <button onclick="calculateAge()">Calculate Age</button><br><br>
+
+  <!-- Output -->
+  <p id="output"></p>
+
+  <script>
+    function calculateAge() {
+      let dob = document.getElementById("dob").value;
+      if (dob === "") {
+        document.getElementById("output").innerText = "Please select your date of birth.";
+        return;
+      }
+
+      let dobDate = new Date(dob);
+      let today = new Date();
+
+      let age = today.getFullYear() - dobDate.getFullYear();
+      let month = today.getMonth() - dobDate.getMonth();
+      let day = today.getDate() - dobDate.getDate();
+
+      // Adjust if birthday hasn’t occurred yet this year
+      if (month < 0 || (month === 0 && day < 0)) {
+        age--;
+      }
+
+      document.getElementById("output").innerText = "Your age is: " + age + " years.";
+    }
+  </script>
+
+</body>
 </html>
